@@ -1,2 +1,2 @@
 # Tree-Protector
-Hakathone project
+Hackathon project
