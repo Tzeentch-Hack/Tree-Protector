@@ -5,7 +5,7 @@ from datetime import datetime
 from core.models.database import SessionLocal
 from sqlalchemy.orm import Session
 
-from core.schemas.schemas import CreateTreeResponse, Tree
+from core.schemas.schemas import CreateTreeResponse, Tree, TreeDataList
 from core.models.models import Tree
 from core.image_logic import image_manager
 
@@ -48,4 +48,10 @@ async def add_new_tree(machine_id: str, coordinates: str, request: Request, file
                                   photo_url=tree_data.photo_url,
                                   tree_kind=tree_data.tree_kind,
                                   coordinates=tree_data.coordinates)
+    return response
+
+
+@router.get("/get_all_trees")
+async def get_all_trees(db: Session = Depends(get_db)) -> TreeDataList:
+    response = crud.get_all_tree_data(db)
     return response

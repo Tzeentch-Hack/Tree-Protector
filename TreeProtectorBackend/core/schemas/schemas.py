@@ -18,3 +18,7 @@ class CreateTreeResponse(BaseModel):
     photo_url: str | None
     tree_kind: str | None
     coordinates: str | None
+
+
+class TreeDataList(BaseModel):
+    data: list[Tree]

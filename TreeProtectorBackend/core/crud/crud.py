@@ -42,3 +42,19 @@ def get_tree_data_by_id(db: Session, tree_data_id):
         return None
     return response
 
+
+def get_all_tree_data(db: Session):
+    tree_datas = db.query(models.Tree)
+    tree_data_list = []
+    for tree_data in tree_datas:
+        tree = schemas.Tree(tree_id=tree_data.id,
+                            machine_id=tree_data.machine_id,
+                            status=tree_data.status,
+                            date_created=tree_data.date_created.strftime("%B %d, %Y"),
+                            photo_url=tree_data.photo_url,
+                            tree_kind=tree_data.tree_kind,
+                            coordinates=tree_data.coordinates)
+        tree_data_list.append(tree)
+    result = schemas.TreeDataList(data=tree_data_list)
+    return result
+
