@@ -4,7 +4,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from datetime import datetime
 
 
-class Request(Base):
+class Tree(Base):
     __tablename__ = "trees"
 
     id = Column(Integer, primary_key=True)
@@ -13,3 +13,4 @@ class Request(Base):
     date_created = Column(DateTime, default=datetime.utcnow)
     photo_url = Column(String, default=None)
     tree_kind = Column(String, default=None)
+    coordinates = Column(String, default=None)
