@@ -18,7 +18,7 @@ models.Base.metadata.create_all(bind=engine)
 @app.get("/download/{file_name:path}", tags=['main'])
 def download_file(file_name):
     return FileResponse(path=file_name, filename=file_name.split('.')[-2],
-                        media_type='audio')
+                        media_type='image')
 
 
 @app.get("/", tags=['main'])
