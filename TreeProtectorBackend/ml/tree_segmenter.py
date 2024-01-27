@@ -104,20 +104,13 @@ class TreeSegmenter:
 if __name__ == "__main__":
     tree_segmenter = TreeSegmenter()
     import time
-
+    input_name = "response_3.jpg"
     start_time = time.time()
-    mask_img, mask_img_binary, percentage = tree_segmenter.query_image("../data/input/green_1.jpeg")
+    mask_img, mask_img_binary, percentage = tree_segmenter.query_image(f"../data/input/{input_name}")
     end_time = time.time()
     print(end_time - start_time)
-    mask_img_next, mask_img_binary_next, percentage_next = tree_segmenter.query_image("../data/input/green_next.jpg")
-    pil_image_binary_next = Image.fromarray(mask_img_binary_next)
-    diff_mask = tree_segmenter.compare_masks(mask_img_binary, mask_img_binary_next)
-    diff_pil_image = Image.fromarray(diff_mask)
-    diff_pil_image.save('../data/output/diff_mask_7.png')
     pil_image = Image.fromarray(mask_img)
-
-    pil_image.save('../data/output/mask1.png')
-    pil_image_binary_next.save('../data/output/mask1_next.png')
     pil_image_binary = Image.fromarray(mask_img_binary)
-    pil_image_binary.save('../data/output/mask_binary_1.png')
+    pil_image.save(f'../data/output/{input_name[:-4]}.jpg')
+    pil_image_binary.save(f'../data/output/mask_binary_{input_name[:-4]}.jpg')
     print('dataframe:', percentage)
