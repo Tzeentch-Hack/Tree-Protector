@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TeacherHelper"
+rootProject.name = "TreeProtectorMobile"
 include(":androidApp")
 include(":shared")

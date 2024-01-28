@@ -9,6 +9,7 @@ plugins {
     id("com.squareup.sqldelight")
 }
 
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     android {
         compilations.all {
@@ -31,7 +32,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //put your multiplatform dependencies here
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0")
                 api("io.ktor:ktor-client-core:$ktorVersion")
@@ -42,11 +42,12 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.github.aakira:napier:2.4.0")
                 api("io.insert-koin:koin-core:3.4.0")
+                implementation ("com.google.android.gms:play-services-location:18.0.0")
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(libs.kotlin.test)
+                implementation(kotlin("test"))
             }
         }
 
