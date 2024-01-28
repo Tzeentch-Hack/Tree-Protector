@@ -2,3 +2,6 @@ fastapi
 python-multipart
 uvicorn[standard]
 sqlalchemy
+psycopg2
+transformers
+scipy
