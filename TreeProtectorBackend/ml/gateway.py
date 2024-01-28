@@ -57,14 +57,16 @@ def pixel_to_coords(top_left:tuple, bottom_right:tuple, resolution:tuple, pixel:
 
     return real_x, real_y
 
-def get_satellite_image_by_centre_and_zoom(center, zoom):
+
+def get_satellite_image_by_centre_and_zoom(center, zoom, machine_id):
     payload = {'l': 'sat', 'll': '{},{}'.format(center[0], center[1]), 'size': '450,450', 'z': zoom}
     r = requests.get('https://static-maps.yandex.ru/1.x/', params=payload)
     print('r.url', r.url)
     top_left, bottom_right = calculate_corner_coordinates(center[0], center[1], zoom, 450, 450)
-    with open("response.jpg", "wb") as f:
+    temp_image_path = f"data/temp/response_{machine_id}.jpg"
+    with open(temp_image_path, "wb") as f:
         f.write(r.content)
-    return "response.jpg", top_left, bottom_right
+    return temp_image_path, top_left, bottom_right
 
 
 if __name__ == '__main__':

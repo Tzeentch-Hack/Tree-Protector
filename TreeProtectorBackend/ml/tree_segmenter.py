@@ -1,9 +1,14 @@
+import os
+
 import numpy as np
 from PIL import Image
 from torchvision import transforms as T
 from transformers import MaskFormerForInstanceSegmentation, MaskFormerImageProcessor
 from scipy.ndimage import binary_erosion, binary_dilation
 from typing import Tuple
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class TreeSegmenter:
@@ -33,7 +38,9 @@ class TreeSegmenter:
             reduce_labels=False
         )
 
-        self.model = MaskFormerForInstanceSegmentation.from_pretrained(self.model_id)
+        hf_token = os.environ.get('HFTOKEN')
+
+        self.model = MaskFormerForInstanceSegmentation.from_pretrained(self.model_id, use_auth_token=hf_token)
 
     def visualize_instance_seg_mask(self, img_in, mask, id2label, included_labels):
         img_out_colored = np.zeros((mask.shape[0], mask.shape[1], 3))

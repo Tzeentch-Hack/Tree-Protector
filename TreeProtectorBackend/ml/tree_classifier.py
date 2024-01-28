@@ -1,5 +1,6 @@
 from transformers import pipeline
 
+
 class TreeClassifier:
     def __init__(self, model_name=None):
         if model_name is None:

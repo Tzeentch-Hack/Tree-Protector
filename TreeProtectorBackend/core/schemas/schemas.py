@@ -22,3 +22,23 @@ class CreateTreeResponse(BaseModel):
 
 class TreeDataList(BaseModel):
     data: list[Tree]
+
+
+class TreeType(BaseModel):
+    label: str
+    score: str | float
+
+
+class TreeClassifierResult(BaseModel):
+    first_tree_type: TreeType
+    second_tree_type: TreeType
+
+    def to_str(self) -> str:
+        return f"{self.first_tree_type.score}% {self.first_tree_type.label};" \
+               f"{self.second_tree_type.score}% {self.second_tree_type.label}"
+
+
+class TreeSatellitePhotoResponse(BaseModel):
+    colored_photo_url: str
+    binary_photo_url: str
+
