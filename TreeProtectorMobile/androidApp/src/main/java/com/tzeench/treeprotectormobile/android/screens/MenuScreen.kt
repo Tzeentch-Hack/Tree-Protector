@@ -69,7 +69,7 @@ fun MenuScreen(
                         if (index == 0) {
                             navController.navigate(MenuSections.RegistrySection.destination)
                         } else {
-
+                            navController.navigate(MenuSections.SatelliteSection.destination)
                         }
                     }
                 ) {

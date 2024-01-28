@@ -7,18 +7,21 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.decapitalize
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.tzeench.treeprotectormobile.android.screens.CameraScreen
 import com.tzeench.treeprotectormobile.android.screens.MenuScreen
 import com.tzeench.treeprotectormobile.android.screens.RegistryScreen
+import com.tzeench.treeprotectormobile.android.screens.SatelliteMapScreen
 
 sealed class MenuSections(val destination: String) {
 
     object MenuScreenSection: MenuSections(MenuSection.MENU_ROUTE)
     object RegistrySection: MenuSections(MenuSection.REGISTRY_ROUTE)
     object CameraSection: MenuSections(MenuSection.CAMERA_ROUTE)
+    object SatelliteSection: MenuSections(MenuSection.SATELLITE_ROUTE)
 }
 
 @RequiresApi(Build.VERSION_CODES.S)
@@ -48,6 +51,10 @@ fun NavGraph(
 
         composable(route = MenuSections.CameraSection.destination) {
             CameraScreen(navController = navController)
+        }
+
+        composable(route = MenuSections.SatelliteSection.destination) {
+            SatelliteMapScreen(navController = navController)
         }
     }
 }

@@ -6,6 +6,7 @@ import com.tzeench.treeprotectormobile.utils.safeApiCall
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.post
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -29,7 +30,7 @@ class SatelliteRepositoryImpl constructor(private val httpClient: HttpClient) :
     ): Flow<NetworkResultState<SatelliteDto>> {
         return flowOf(
             safeApiCall {
-                httpClient.get(urlString = "http://16.171.182.158:8000/trees/make_tree_satellite_photo?x=$x&y=$y&zoom=$zoom&machine_id=$deviceId") {}
+                httpClient.post(urlString = "http://16.171.182.158:8000/trees/make_tree_satellite_photo?x=$x&y=$y&zoom=$zoom&machine_id=$deviceId") {}
                     .body()
             }
         )
